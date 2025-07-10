@@ -503,20 +503,19 @@
 
         /* About Section */
         .about-section {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             background: radial-gradient(circle at 30% 20%, #667eea 0%, #b287de 25%, #8e9aaf 50%, #a8caba 75%, #b8e6b8 100%);
             background-size: 400% 400%;
             animation: gradientMove 20s ease infinite;
             color: white;
-            padding: 0 15.2rem;
+            padding: 2rem;
             margin-top: 0;
-            padding-top: 2rem;
-            padding-bottom: 2rem;
             transition: all 0.3s ease;
             position: relative;
+            box-sizing: border-box;
         }
 
         .about-section::before {
@@ -558,17 +557,19 @@
 
         .about-content {
             max-width: 800px;
+            width: 100%;
             text-align: left;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1.2s ease forwards;
-            margin-left: 0rem;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .about-content h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             margin-bottom: 1rem;
-            margin-top: -3rem;
+            margin-top: 0;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease 0.3s forwards;
@@ -583,13 +584,14 @@
             background-clip: text;
             animation: fadeInUp 1s ease 0.3s forwards, gradientShift 8s ease-in-out infinite;
             position: relative;
+            text-align: left;
         }
 
         .about-content h1::after {
             content: '';
             position: absolute;
             bottom: -5px;
-            left: -2rem;
+            left: 0;
             width: 0;
             height: 3px;
             background: linear-gradient(90deg, #2c3e50, #34495e, #84a0bd);
@@ -603,7 +605,7 @@
                 width: 0;
             }
             to {
-                width: calc(100% + 4rem);
+                width: 100%;
             }
         }
 
@@ -617,9 +619,9 @@
         }
 
         .about-content h2 {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             margin-bottom: 2rem;
-            margin-left: 0.5rem;
+            margin-left: 0;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease 0.6s forwards;
@@ -634,18 +636,18 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: fadeInUp 1s ease 0.6s forwards, gradientShift 8s ease-in-out infinite;
+            text-align: left;
         }
 
         .about-content p {
-            font-size: 1.2rem;
-            line-height: 1.8;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            line-height: 1.6;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease 0.9s forwards;
             max-width: 700px;
-            margin: 0 auto;
-            margin-left: 3rem;
-            margin-top: 4rem;
+            margin: 0;
+            margin-top: 2rem;
             font-family: 'SF Pro Text', 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-weight: 350;
             transition: all 0.3s ease;
@@ -655,6 +657,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: fadeInUp 1s ease 0.9s forwards, gradientShift 8s ease-in-out infinite;
+            text-align: left;
         }
 
         /* Portfolio Section */
@@ -700,6 +703,103 @@
         .project-card:hover {
             height: 300px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Mobile project card improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .project-card {
+                height: 200px;
+                min-height: 200px;
+            }
+
+            .project-card:hover {
+                height: 200px;
+                transform: none;
+            }
+
+            .project-overlay {
+                opacity: 1;
+                pointer-events: auto;
+                background: rgba(0, 0, 0, 0.1);
+            }
+
+            .project-overlay h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .project-overlay p {
+                font-size: 0.8rem;
+                line-height: 1.3;
+            }
+        }
+
+        /* Additional mobile-specific styles using max-width */
+        @media (max-width: 768px) {
+            .project-card {
+                height: 200px !important;
+                min-height: 200px !important;
+            }
+
+            .project-card:hover {
+                height: 200px !important;
+                transform: none !important;
+            }
+
+            .project-overlay {
+                opacity: 1 !important;
+                pointer-events: auto !important;
+                background: rgba(0, 0, 0,0) !important;
+            }
+
+            .project-overlay h3 {
+                font-size: 1.2rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .project-overlay p {
+                font-size: 0.8rem !important;
+                line-height: 1.3 !important;
+            }
+
+            /* Navigation touch improvements */
+            .nav-links a:active {
+                transform: translateY(0) !important;
+                color: #3498db !important;
+            }
+
+            .nav-links a:active::before {
+                width: 100% !important;
+            }
+
+            /* Contact link touch improvements */
+            .contact-link:active {
+                transform: scale(0.95) !important;
+                background: #3498db !important;
+                color: white !important;
+            }
+
+            /* Night mode button touch improvements */
+            .night-mode-btn:active {
+                transform: scale(0.9) !important;
+            }
+
+            /* Logo touch improvements */
+            .logo:active .logo-path {
+                fill: #3498db !important;
+            }
+
+            .logo:active::after {
+                width: 100% !important;
+            }
+
+            /* Move project category labels to bottom left on mobile */
+            .project-category {
+                top: auto !important;
+                right: auto !important;
+                bottom: 0.5rem !important;
+                left: 0.5rem !important;
+            }
         }
 
         .project-image {
@@ -1165,26 +1265,410 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
             .nav-links {
                 gap: 1rem;
             }
 
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0;
+            }
+
+            .logo {
+                margin-left: 0;
+            }
+
+            .logo svg {
+                width: 100px;
+                height: 35px;
+            }
+
+            .font-size-control {
+                display: none; /* Hide on mobile to save space */
+            }
+
             .home-content h1 {
                 font-size: 2.5rem;
+                line-height: 1.2;
+            }
+
+            .home-content h2 {
+                font-size: 1.5rem;
             }
 
             .section-title {
                 font-size: 2rem;
+                margin-bottom: 1.5rem;
             }
 
             .projects-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                padding: 0 1rem;
             }
 
-            .pdf-viewer,
-            .pdf-placeholder {
-                height: 60vh;
+            .project-card {
+                margin-bottom: 1rem;
+            }
+
+            .project-overlay h3 {
+                font-size: 1.2rem;
+            }
+
+            .project-overlay p {
+                font-size: 0.9rem;
+            }
+
+            .about-section {
+                padding: 1rem;
+            }
+
+            .about-content {
+                padding: 1rem;
+                max-width: 100%;
+            }
+
+            .about-content h1 {
+                font-size: clamp(1.8rem, 6vw, 2.2rem);
+                margin-bottom: 1rem;
+            }
+
+            .about-content h2 {
+                font-size: clamp(1rem, 3vw, 1.3rem);
+                margin-bottom: 1rem;
+            }
+
+            .about-content p {
+                font-size: clamp(0.8rem, 2.5vw, 1rem);
+                line-height: 1.6;
+                margin-top: 1.5rem;
+                max-width: 100%;
+            }
+
+            .resume-content,
+            .contact-content {
+                padding: 2rem 1rem;
+            }
+
+            .contact-info {
+                margin: 1.5rem 0;
+                padding: 1rem;
+            }
+
+            .contact-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .contact-link {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .night-mode-toggle {
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .night-mode-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .footer-content p {
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            /* Gallery modal improvements for mobile */
+            .gallery-modal-content {
+                width: 95%;
+                height: 90%;
+                margin: 2.5% auto;
+            }
+
+            .gallery-modal-header {
+                padding: 1rem;
+            }
+
+            .gallery-modal-title {
+                font-size: 1.2rem;
+            }
+
+            .gallery-controls {
+                gap: 0.5rem;
+            }
+
+            .gallery-modal-close {
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
+            }
+
+            .gallery-container {
+                padding: 1rem;
+            }
+
+            .gallery-image {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 0.5rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+
+            .logo {
+                margin-left: 0;
+            }
+
+            .logo svg {
+                width: 80px;
+                height: 30px;
+            }
+
+            .home-content h1 {
+                font-size: 2rem;
+            }
+
+            .home-content h2 {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-section {
+                padding: 0.5rem;
+            }
+
+            .about-content {
+                padding: 0.5rem;
+                max-width: 100%;
+            }
+
+            .about-content h1 {
+                font-size: clamp(1.5rem, 5vw, 1.8rem);
+            }
+
+            .about-content h2 {
+                font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            }
+
+            .about-content p {
+                font-size: clamp(0.8rem, 2vw, 0.9rem);
+                margin-top: 1rem;
+                max-width: 100%;
+            }
+
+            .projects-grid {
+                padding: 0 0.5rem;
+            }
+
+            .resume-content,
+            .contact-content {
+                padding: 1.5rem 0.5rem;
+            }
+
+            .contact-info {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .contact-links {
+                gap: 0.8rem;
+            }
+
+            .contact-link {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .night-mode-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .gallery-modal-content {
+                width: 98%;
+                height: 95%;
+                margin: 1% auto;
+            }
+
+            .gallery-modal-header {
+                padding: 0.8rem;
+            }
+
+            .gallery-modal-title {
+                font-size: 1rem;
+            }
+
+            .gallery-modal-close {
+                width: 30px;
+                height: 30px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Landscape orientation for mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .about-section {
+                height: 100vh;
+                padding: 1rem;
+            }
+
+            .about-content {
+                padding: 0.5rem;
+                max-width: 100%;
+            }
+
+            .about-content h1 {
+                font-size: clamp(1.5rem, 4vw, 1.8rem);
+            }
+
+            .about-content h2 {
+                font-size: clamp(0.9rem, 2vw, 1.1rem);
+            }
+
+            .about-content p {
+                font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+                margin-top: 1rem;
+                max-width: 100%;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            /* Add touch feedback animations */
+            @keyframes touchFeedback {
+                0% { transform: scale(1); }
+                50% { transform: scale(0.98); }
+                100% { transform: scale(1); }
+            }
+
+            .nav-links a {
+                padding: 0.8rem 0;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            .nav-links a:hover {
+                transform: none;
+            }
+
+            .nav-links a:active {
+                transform: translateY(0);
+                color: #3498db;
+            }
+
+            .nav-links a:active::before {
+                width: 100%;
+            }
+
+            .project-card {
+                cursor: pointer;
+                -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            }
+
+            .project-card:hover {
+                transform: none;
+            }
+
+            .project-card:active {
+                transform: scale(0.98);
+            }
+
+            .contact-link {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            }
+
+            .contact-link:hover {
+                transform: none;
+            }
+
+            .contact-link:active {
+                transform: scale(0.95);
+                background: #3498db;
+                color: white;
+            }
+
+            .night-mode-btn {
+                -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+            }
+
+            .night-mode-btn:hover {
+                transform: none;
+            }
+
+            .night-mode-btn:active {
+                transform: scale(0.9);
+            }
+
+            .gallery-modal-close {
+                min-height: 44px;
+                min-width: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .gallery-modal-close:hover {
+                transform: none;
+            }
+
+            .gallery-modal-close:active {
+                transform: scale(0.9);
+            }
+
+            /* Always show project overlay on mobile */
+            .project-overlay {
+                opacity: 0.9;
+                pointer-events: auto;
+            }
+
+            .project-card:hover .project-overlay {
+                opacity: 0.9;
+            }
+
+            /* Show hover effects on touch */
+            .logo:hover .logo-path {
+                fill: #3498db;
+            }
+
+            .logo:hover::after {
+                width: 100%;
             }
         }
     </style>
@@ -1671,7 +2155,98 @@
         // Initialize project cards when page loads
         document.addEventListener('DOMContentLoaded', function() {
             initializeProjectCards();
+            initializeMobileTouchInteractions();
         });
+
+        // Mobile touch interactions
+        function initializeMobileTouchInteractions() {
+            // Check if device supports touch
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            
+            if (isTouchDevice) {
+                // Add touch feedback to navigation links
+                const navLinks = document.querySelectorAll('.nav-links a');
+                navLinks.forEach(link => {
+                    link.addEventListener('touchstart', function() {
+                        this.style.transform = 'translateY(0)';
+                        this.style.color = '#3498db';
+                    });
+                    
+                    link.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.style.transform = '';
+                            this.style.color = '';
+                        }, 150);
+                    });
+                });
+
+                // Add touch feedback to contact links
+                const contactLinks = document.querySelectorAll('.contact-link');
+                contactLinks.forEach(link => {
+                    link.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(0.95)';
+                        this.style.background = '#3498db';
+                        this.style.color = 'white';
+                    });
+                    
+                    link.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.style.transform = '';
+                            this.style.background = '';
+                            this.style.color = '';
+                        }, 150);
+                    });
+                });
+
+                // Add touch feedback to night mode button
+                const nightModeBtn = document.getElementById('nightModeBtn');
+                if (nightModeBtn) {
+                    nightModeBtn.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(0.9)';
+                    });
+                    
+                    nightModeBtn.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 150);
+                    });
+                }
+
+                // Add touch feedback to logo
+                const logo = document.querySelector('.logo');
+                if (logo) {
+                    logo.addEventListener('touchstart', function() {
+                        const logoPath = this.querySelector('.logo-path');
+                        if (logoPath) {
+                            logoPath.style.fill = '#3498db';
+                        }
+                    });
+                    
+                    logo.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            const logoPath = this.querySelector('.logo-path');
+                            if (logoPath) {
+                                logoPath.style.fill = '';
+                            }
+                        }, 150);
+                    });
+                }
+
+                // Add touch feedback to project cards
+                const projectCards = document.querySelectorAll('.project-card');
+                projectCards.forEach(card => {
+                    card.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(0.98)';
+                    });
+                    
+                    card.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 150);
+                    });
+                });
+            }
+        }
     </script>
 </body>
 </html>
