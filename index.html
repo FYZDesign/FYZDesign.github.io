@@ -1204,6 +1204,7 @@
         .freelance-document-count { color: #666; font-size: 0.85rem; margin-bottom: 1rem; }
         .freelance-page { margin: 0 0 1.5rem; }
         .freelance-page figcaption { text-align: center; color: #666; font-size: 0.8rem; margin-top: 0.5rem; }
+        .freelance-page figcaption a { color: #126988; }
         .freelance-page .gallery-image { background: white; }
         .freelance-image-error { color: #666; text-align: center; padding: 1rem; }
 
@@ -1212,6 +1213,7 @@
         body.night-mode .freelance-intro p,
         body.night-mode .freelance-document-count,
         body.night-mode .freelance-page figcaption { color: #bbb; }
+        body.night-mode .freelance-page figcaption a { color: #7ac9e2; }
         body.night-mode .freelance-client-card,
         body.night-mode .freelance-document-button { background: #252c32; color: #f1f1f1; border-color: #46535d; }
         body.night-mode .freelance-client-description { color: #bbb; }
@@ -1939,7 +1941,7 @@
                     <div class="project-overlay">
                         <div class="project-category"></div>
                         <h3>Freelance Work</h3>
-                        <p>Branding design for clients</p>
+                        <p>Branding and design for clients</p>
                     </div>
                 </div>
             </div>
@@ -2029,7 +2031,7 @@
     </div>
 
     <script>
-        // Add future clients here; each client's documents have explicit page counts.
+        // Add future clients here; documents use page counts or a list of images.
         const freelanceClients = [
             {
                 id: "kings-elevator",
@@ -2041,6 +2043,65 @@
                     { title: "Company brochure", path: "assets/projects/freelance/kings-elevator/brochure/", pages: 24, spread: true },
                     { title: "Sales sheet · 6.5 × 9 in", path: "assets/projects/freelance/kings-elevator/sales-sheet-compact/", pages: 1, ratio: 468 / 648 },
                     { title: "Sales sheet · Letter", path: "assets/projects/freelance/kings-elevator/sales-sheet-letter/", pages: 1, ratio: 612 / 792 }
+                ]
+            },
+            {
+                id: "petbrick",
+                name: "PetBrick",
+                category: "Campaign Design",
+                description: "A campaign presentation for a modular, customizable pet playground.",
+                cover: "assets/projects/freelance/petbrick/cover.webp",
+                documents: [
+                    { title: "Campaign presentation", path: "assets/projects/freelance/petbrick/campaign/", pages: 2, ratio: 1920 / 12000 }
+                ]
+            },
+            {
+                id: "maison-enamel",
+                name: "MaisonEnamel",
+                category: "Branding Design",
+                description: "Brand identity, Etsy shop visuals and a bilingual clock catalog for a decorative home accents brand.",
+                cover: "assets/projects/freelance/maison-enamel/cover.webp",
+                documents: [
+                    {
+                        title: "Logo & profiles",
+                        images: [
+                            { src: "assets/projects/freelance/maison-enamel/brand/logo.webp", width: 1254, height: 1254, label: "Brand logo" },
+                            { src: "assets/projects/freelance/maison-enamel/brand/clock-profile.webp", width: 1254, height: 1254, label: "Clock profile image" },
+                            { src: "assets/projects/freelance/maison-enamel/brand/peacock-profile.webp", width: 1254, height: 1254, label: "Peacock profile image" }
+                        ]
+                    },
+                    {
+                        title: "Shop banners",
+                        images: [
+                            { src: "assets/projects/freelance/maison-enamel/brand/banner-product-photos.webp", width: 2172, height: 724, label: "Product photography banner" },
+                            { src: "assets/projects/freelance/maison-enamel/brand/banner-sage.webp", width: 2172, height: 724, label: "Sage banner variation" },
+                            { src: "assets/projects/freelance/maison-enamel/brand/banner-botanical.webp", width: 2172, height: 724, label: "Botanical banner variation" }
+                        ]
+                    },
+                    { title: "Clock catalog", path: "assets/projects/freelance/maison-enamel/clock-catalog/", pages: 14, ratio: 595.2756 / 841.8898 }
+                ]
+            },
+            {
+                id: "walker",
+                name: "Walker",
+                category: "UI/UX Design",
+                description: "Phone and tablet interfaces for smart walker onboarding, calibration and gait training.",
+                cover: "assets/projects/freelance/walker/cover.webp",
+                documents: [
+                    {
+                        title: "Phone experience",
+                        images: [
+                            { src: "assets/projects/freelance/walker/phone/onboarding.webp", width: 2600, height: 2240, label: "Phone · Onboarding and calibration" },
+                            { src: "assets/projects/freelance/walker/phone/app-training.webp", width: 2600, height: 3340, label: "Phone · App and gait training" }
+                        ]
+                    },
+                    {
+                        title: "Tablet experience",
+                        images: [
+                            { src: "assets/projects/freelance/walker/tablet/onboarding.webp", width: 6060, height: 2280, label: "Tablet · Onboarding and calibration" },
+                            { src: "assets/projects/freelance/walker/tablet/app-training.webp", width: 6060, height: 2280, label: "Tablet · App and gait training" }
+                        ]
+                    }
                 ]
             }
         ];
@@ -2099,7 +2160,7 @@
             {
                 id: 7,
                 title: "Freelance Work",
-                description: "Branding design for clients",
+                description: "Branding and design for clients",
                 category: "Branding Design",
                 type: "collection",
                 clients: freelanceClients
@@ -2193,14 +2254,14 @@
             document.querySelector('.gallery-modal-body').scrollTop = 0;
         }
 
-        function renderFreelanceCollection(project, focusCard = false) {
+        function renderFreelanceCollection(project, focusClientId = null) {
             activeGalleryRequest++;
             resetGalleryView(false);
             document.getElementById('modalTitle').textContent = project.title;
             const container = document.getElementById('galleryContainer');
             const intro = document.createElement('div');
             intro.className = 'freelance-intro';
-            intro.innerHTML = '<h2>Freelance Work</h2><p>A collection of branding design work for clients.</p>';
+            intro.innerHTML = '<h2>Freelance Work</h2><p>A collection of branding, interface and campaign design work for clients.</p>';
             container.append(intro);
             const grid = document.createElement('div');
             grid.className = 'freelance-client-grid';
@@ -2208,13 +2269,14 @@
                 const card = document.createElement('button');
                 card.type = 'button';
                 card.className = 'freelance-client-card';
+                card.dataset.client = client.id;
                 card.setAttribute('aria-label', `View ${client.name} work`);
-                card.innerHTML = `<img class="freelance-client-cover" src="${client.cover}" alt="${client.name} brochure cover"><span class="freelance-client-copy"><span class="freelance-eyebrow">${client.category}</span><strong class="freelance-client-name">${client.name}</strong><span class="freelance-client-description">${client.description}</span><span class="freelance-client-link">View work &rarr;</span></span>`;
+                card.innerHTML = `<img class="freelance-client-cover" src="${client.cover}" alt="${client.name} project preview" loading="lazy" decoding="async"><span class="freelance-client-copy"><span class="freelance-eyebrow">${client.category}</span><strong class="freelance-client-name">${client.name}</strong><span class="freelance-client-description">${client.description}</span><span class="freelance-client-link">View work &rarr;</span></span>`;
                 card.addEventListener('click', () => renderFreelanceClient(project, client));
                 grid.append(card);
             });
             container.append(grid);
-            if (focusCard) grid.querySelector('button')?.focus({ preventScroll: true });
+            if (focusClientId) grid.querySelector(`[data-client="${focusClientId}"]`)?.focus({ preventScroll: true });
         }
 
         function renderFreelanceClient(project, client) {
@@ -2226,7 +2288,7 @@
             back.type = 'button';
             back.className = 'freelance-back';
             back.textContent = '← All freelance work';
-            back.addEventListener('click', () => renderFreelanceCollection(project, true));
+            back.addEventListener('click', () => renderFreelanceCollection(project, client.id));
             container.append(back);
             const intro = document.createElement('div');
             intro.className = 'freelance-intro';
@@ -2246,32 +2308,48 @@
                 heading.textContent = documentData.title;
                 const count = document.createElement('p');
                 count.className = 'freelance-document-count';
-                count.textContent = `${documentData.pages} ${documentData.pages === 1 ? 'page' : 'pages'}`;
+                const previews = documentData.images || Array.from({ length: documentData.pages }, (_, index) => {
+                    const page = index + 1;
+                    const ratio = documentData.spread ? (page === 1 || page === documentData.pages ? 595.276 / 841.89 : 1190.55 / 841.89) : documentData.ratio;
+                    return {
+                        src: `${documentData.path}${page}.jpg`,
+                        width: Math.round(1800 * Math.min(1, ratio)),
+                        height: Math.round(1800 / Math.max(1, ratio)),
+                        label: `Page ${page} of ${documentData.pages}`
+                    };
+                });
+                count.textContent = `${previews.length} ${documentData.images ? (previews.length === 1 ? 'image' : 'images') : (previews.length === 1 ? 'page' : 'pages')}`;
                 viewer.append(heading, count);
-                for (let page = 1; page <= documentData.pages; page++) {
+                previews.forEach(preview => {
                     const figure = document.createElement('figure');
                     figure.className = 'freelance-page';
                     const image = document.createElement('img');
                     image.className = 'gallery-image';
-                    image.alt = `${client.name} — ${documentData.title}, page ${page}`;
+                    image.alt = `${client.name} — ${documentData.title}: ${preview.label}`;
                     image.loading = 'lazy';
                     image.decoding = 'async';
-                    const ratio = documentData.spread ? (page === 1 || page === documentData.pages ? 595.276 / 841.89 : 1190.55 / 841.89) : documentData.ratio;
-                    image.width = Math.round(1800 * Math.min(1, ratio));
-                    image.height = Math.round(1800 / Math.max(1, ratio));
+                    image.width = preview.width;
+                    image.height = preview.height;
                     image.addEventListener('error', () => {
                         image.hidden = true;
                         const error = document.createElement('p');
                         error.className = 'freelance-image-error';
-                        error.textContent = `Page ${page} could not load. Please try again.`;
+                        error.textContent = `${preview.label} could not load. Please try again.`;
                         figure.prepend(error);
                     }, { once: true });
-                    image.src = `${documentData.path}${page}.jpg`;
+                    image.src = preview.src;
                     const caption = document.createElement('figcaption');
-                    caption.textContent = `Page ${page} of ${documentData.pages}`;
+                    caption.append(document.createTextNode(`${preview.label} · `));
+                    const fullSize = document.createElement('a');
+                    fullSize.href = preview.src;
+                    fullSize.target = '_blank';
+                    fullSize.rel = 'noopener';
+                    fullSize.textContent = 'Open full-size image';
+                    fullSize.setAttribute('aria-label', `Open ${client.name} ${preview.label} at full size`);
+                    caption.append(fullSize);
                     figure.append(image, caption);
                     viewer.append(figure);
-                }
+                });
             };
             client.documents.forEach(documentData => {
                 const button = document.createElement('button');
