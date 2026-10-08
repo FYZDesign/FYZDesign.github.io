@@ -1069,6 +1069,164 @@
             transition: transform 0.3s ease;
         }
 
+        /* Freelance collection */
+        .project-card[data-project="7"] .project-image {
+            background: #e5edf0;
+        }
+
+        .project-card[data-project="7"] .freelance-preview-cover {
+            position: absolute;
+            width: 42%;
+            height: 87%;
+            top: 5%;
+            left: 16%;
+            object-fit: contain;
+            transform: rotate(-8deg);
+            filter: drop-shadow(0 10px 12px rgba(22, 51, 66, 0.25));
+        }
+
+        .project-card[data-project="7"] .freelance-preview-sheet {
+            position: absolute;
+            width: 42%;
+            height: 87%;
+            top: 8%;
+            right: 14%;
+            object-fit: contain;
+            transform: rotate(8deg);
+            filter: drop-shadow(0 10px 12px rgba(22, 51, 66, 0.25));
+        }
+
+        .project-card[data-project="7"] .project-overlay {
+            opacity: 1;
+            justify-content: flex-end;
+            padding: 1.25rem;
+            background: linear-gradient(transparent 40%, rgba(16, 43, 57, 0.9));
+        }
+
+        .project-category[data-category="Branding Design"] {
+            background: rgba(18, 105, 136, 0.95);
+        }
+
+        .project-card:focus-visible,
+        .freelance-client-card:focus-visible,
+        .freelance-document-button:focus-visible,
+        .freelance-back:focus-visible {
+            outline: 3px solid #3498db;
+            outline-offset: 4px;
+        }
+
+        .freelance-intro { margin-bottom: 1.5rem; }
+        .freelance-intro h2 { color: #2c3e50; margin-bottom: 0.5rem; }
+        .freelance-intro p { color: #555; max-width: 650px; }
+        .freelance-eyebrow {
+            color: #126988;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .freelance-client-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 1.5rem;
+        }
+
+        .freelance-client-card {
+            max-width: 480px;
+            text-align: left;
+            font: inherit;
+            color: #2c3e50;
+            background: white;
+            border: 1px solid #dbe3e8;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .freelance-client-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(22, 51, 66, 0.12);
+        }
+
+        .freelance-client-cover {
+            display: block;
+            width: 100%;
+            height: 260px;
+            object-fit: contain;
+            padding: 1rem;
+            background: #e5edf0;
+        }
+
+        .freelance-client-copy { display: block; padding: 1.5rem; }
+        .freelance-client-name { display: block; font-size: 1.35rem; margin: 0.4rem 0; }
+        .freelance-client-description { display: block; color: #555; font-size: 0.95rem; }
+        .freelance-client-link { display: block; color: #126988; font-weight: 600; margin-top: 1rem; }
+        .freelance-back {
+            border: 0;
+            background: transparent;
+            padding: 0.5rem 0;
+            margin-bottom: 1rem;
+            color: #126988;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            min-height: 44px;
+        }
+
+        .freelance-document-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .freelance-document-button {
+            font: inherit;
+            font-size: 0.9rem;
+            padding: 0.65rem 1rem;
+            border: 1px solid #c7d7df;
+            border-radius: 6px;
+            background: white;
+            color: #2c3e50;
+            cursor: pointer;
+            min-height: 44px;
+        }
+
+        .freelance-document-button[aria-pressed="true"] {
+            background: #126988;
+            border-color: #126988;
+            color: white;
+        }
+
+        .freelance-document-heading { color: #2c3e50; margin-bottom: 0.5rem; }
+        .freelance-document-count { color: #666; font-size: 0.85rem; margin-bottom: 1rem; }
+        .freelance-page { margin: 0 0 1.5rem; }
+        .freelance-page figcaption { text-align: center; color: #666; font-size: 0.8rem; margin-top: 0.5rem; }
+        .freelance-page .gallery-image { background: white; }
+        .freelance-image-error { color: #666; text-align: center; padding: 1rem; }
+
+        body.night-mode .freelance-intro h2,
+        body.night-mode .freelance-document-heading { color: #f1f1f1; }
+        body.night-mode .freelance-intro p,
+        body.night-mode .freelance-document-count,
+        body.night-mode .freelance-page figcaption { color: #bbb; }
+        body.night-mode .freelance-client-card,
+        body.night-mode .freelance-document-button { background: #252c32; color: #f1f1f1; border-color: #46535d; }
+        body.night-mode .freelance-client-description { color: #bbb; }
+        body.night-mode .freelance-eyebrow,
+        body.night-mode .freelance-client-link,
+        body.night-mode .freelance-back { color: #7ac9e2; }
+        body.night-mode .freelance-document-button[aria-pressed="true"] { background: #126988; }
+
+        @media (max-width: 480px) {
+            .gallery-modal-body:has(.freelance-intro) { padding: 1rem; }
+            .gallery-modal-header:has(+ .gallery-modal-body .freelance-intro) { padding: 0.8rem 1rem; }
+            .gallery-modal-header:has(+ .gallery-modal-body .freelance-intro) .size-slider-container { display: none; }
+            .freelance-document-button { flex: 1 1 100%; text-align: left; }
+        }
+
         /* Resume Section */
         .resume-section {
             padding: 3rem 2rem;
@@ -1773,6 +1931,17 @@
                         <p>Description of Project 6</p>
                     </div>
                 </div>
+                <div class="project-card" data-project="7" role="button" tabindex="0" aria-label="Open Freelance Work collection">
+                    <div class="project-image">
+                        <img class="freelance-preview-sheet" src="assets/projects/freelance/kings-elevator/sales-sheet-letter/1.jpg" alt="" loading="lazy">
+                        <img class="freelance-preview-cover" src="assets/projects/freelance/kings-elevator/brochure/1.jpg" alt="" loading="lazy">
+                    </div>
+                    <div class="project-overlay">
+                        <div class="project-category"></div>
+                        <h3>Freelance Work</h3>
+                        <p>Branding design for clients</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1839,7 +2008,7 @@
     </div>
 
     <!-- Project Gallery Modal -->
-    <div id="galleryModal" class="gallery-modal">
+    <div id="galleryModal" class="gallery-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
         <div class="gallery-modal-content">
             <div class="gallery-modal-header">
                 <div class="gallery-modal-title" id="modalTitle">Project Gallery</div>
@@ -1848,7 +2017,7 @@
                         <label for="sizeSlider">Size:</label>
                         <input type="range" id="sizeSlider" class="size-slider" min="50" max="150" value="100" step="10">
                     </div>
-                    <button class="gallery-modal-close" id="modalClose">&times;</button>
+                    <button class="gallery-modal-close" id="modalClose" aria-label="Close project gallery">&times;</button>
                 </div>
             </div>
             <div class="gallery-modal-body">
@@ -1860,6 +2029,22 @@
     </div>
 
     <script>
+        // Add future clients here; each client's documents have explicit page counts.
+        const freelanceClients = [
+            {
+                id: "kings-elevator",
+                name: "Kings Elevator",
+                category: "Branding Design",
+                description: "Company brochure and sales sheets for an elevator parts and cab interiors company.",
+                cover: "assets/projects/freelance/kings-elevator/brochure/1.jpg",
+                documents: [
+                    { title: "Company brochure", path: "assets/projects/freelance/kings-elevator/brochure/", pages: 24, spread: true },
+                    { title: "Sales sheet · 6.5 × 9 in", path: "assets/projects/freelance/kings-elevator/sales-sheet-compact/", pages: 1, ratio: 468 / 648 },
+                    { title: "Sales sheet · Letter", path: "assets/projects/freelance/kings-elevator/sales-sheet-letter/", pages: 1, ratio: 612 / 792 }
+                ]
+            }
+        ];
+
         // Project data - update with your actual projects
         // Each project folder contains PNG images of the PDF pages
         const projects = [
@@ -1910,6 +2095,14 @@
                 category: "UI/UX Design",
                 image: "assets/images/project6.jpg", // Thumbnail image
                 galleryPath: "assets/projects/project6/" // Folder containing PNG images
+            },
+            {
+                id: 7,
+                title: "Freelance Work",
+                description: "Branding design for clients",
+                category: "Branding Design",
+                type: "collection",
+                clients: freelanceClients
             }
         ];
 
@@ -1975,8 +2168,122 @@
                     
                     // Add click event
                     card.addEventListener('click', () => openGalleryModal(project));
+                    if (project.type === 'collection') {
+                        card.addEventListener('keydown', event => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault();
+                                openGalleryModal(project);
+                            }
+                        });
+                    }
                 }
             });
+        }
+
+        let activeGalleryRequest = 0;
+        let galleryOpener = null;
+
+        function resetGalleryView(showSizeControl) {
+            const container = document.getElementById('galleryContainer');
+            container.replaceChildren();
+            container.style.transform = '';
+            document.getElementById('sizeSlider').value = 100;
+            document.querySelector('.size-slider-container').hidden = !showSizeControl;
+            document.querySelector('.size-slider-container').style.display = showSizeControl ? '' : 'none';
+            document.querySelector('.gallery-modal-body').scrollTop = 0;
+        }
+
+        function renderFreelanceCollection(project, focusCard = false) {
+            activeGalleryRequest++;
+            resetGalleryView(false);
+            document.getElementById('modalTitle').textContent = project.title;
+            const container = document.getElementById('galleryContainer');
+            const intro = document.createElement('div');
+            intro.className = 'freelance-intro';
+            intro.innerHTML = '<h2>Freelance Work</h2><p>A collection of branding design work for clients.</p>';
+            container.append(intro);
+            const grid = document.createElement('div');
+            grid.className = 'freelance-client-grid';
+            project.clients.forEach(client => {
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'freelance-client-card';
+                card.setAttribute('aria-label', `View ${client.name} work`);
+                card.innerHTML = `<img class="freelance-client-cover" src="${client.cover}" alt="${client.name} brochure cover"><span class="freelance-client-copy"><span class="freelance-eyebrow">${client.category}</span><strong class="freelance-client-name">${client.name}</strong><span class="freelance-client-description">${client.description}</span><span class="freelance-client-link">View work &rarr;</span></span>`;
+                card.addEventListener('click', () => renderFreelanceClient(project, client));
+                grid.append(card);
+            });
+            container.append(grid);
+            if (focusCard) grid.querySelector('button')?.focus({ preventScroll: true });
+        }
+
+        function renderFreelanceClient(project, client) {
+            activeGalleryRequest++;
+            resetGalleryView(true);
+            document.getElementById('modalTitle').textContent = client.name;
+            const container = document.getElementById('galleryContainer');
+            const back = document.createElement('button');
+            back.type = 'button';
+            back.className = 'freelance-back';
+            back.textContent = '← All freelance work';
+            back.addEventListener('click', () => renderFreelanceCollection(project, true));
+            container.append(back);
+            const intro = document.createElement('div');
+            intro.className = 'freelance-intro';
+            intro.innerHTML = `<span class="freelance-eyebrow">${client.category}</span><h2>${client.name}</h2><p>${client.description}</p>`;
+            container.append(intro);
+            const nav = document.createElement('div');
+            nav.className = 'freelance-document-nav';
+            nav.setAttribute('role', 'group');
+            nav.setAttribute('aria-label', 'Choose a document');
+            const viewer = document.createElement('section');
+            viewer.setAttribute('aria-label', 'Document preview');
+            const showDocument = (documentData, selectedButton) => {
+                viewer.replaceChildren();
+                nav.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button === selectedButton)));
+                const heading = document.createElement('h3');
+                heading.className = 'freelance-document-heading';
+                heading.textContent = documentData.title;
+                const count = document.createElement('p');
+                count.className = 'freelance-document-count';
+                count.textContent = `${documentData.pages} ${documentData.pages === 1 ? 'page' : 'pages'}`;
+                viewer.append(heading, count);
+                for (let page = 1; page <= documentData.pages; page++) {
+                    const figure = document.createElement('figure');
+                    figure.className = 'freelance-page';
+                    const image = document.createElement('img');
+                    image.className = 'gallery-image';
+                    image.alt = `${client.name} — ${documentData.title}, page ${page}`;
+                    image.loading = 'lazy';
+                    image.decoding = 'async';
+                    const ratio = documentData.spread ? (page === 1 || page === documentData.pages ? 595.276 / 841.89 : 1190.55 / 841.89) : documentData.ratio;
+                    image.width = Math.round(1800 * Math.min(1, ratio));
+                    image.height = Math.round(1800 / Math.max(1, ratio));
+                    image.addEventListener('error', () => {
+                        image.hidden = true;
+                        const error = document.createElement('p');
+                        error.className = 'freelance-image-error';
+                        error.textContent = `Page ${page} could not load. Please try again.`;
+                        figure.prepend(error);
+                    }, { once: true });
+                    image.src = `${documentData.path}${page}.jpg`;
+                    const caption = document.createElement('figcaption');
+                    caption.textContent = `Page ${page} of ${documentData.pages}`;
+                    figure.append(image, caption);
+                    viewer.append(figure);
+                }
+            };
+            client.documents.forEach(documentData => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'freelance-document-button';
+                button.textContent = documentData.title;
+                button.addEventListener('click', () => showDocument(documentData, button));
+                nav.append(button);
+            });
+            container.append(nav, viewer);
+            showDocument(client.documents[0], nav.firstElementChild);
+            back.focus({ preventScroll: true });
         }
 
         // Gallery Modal functions
@@ -1984,6 +2291,17 @@
             const modal = document.getElementById('galleryModal');
             const modalTitle = document.getElementById('modalTitle');
             const galleryContainer = document.getElementById('galleryContainer');
+            galleryOpener = document.activeElement;
+            const requestId = ++activeGalleryRequest;
+            resetGalleryView(true);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            document.getElementById('modalClose').focus({ preventScroll: true });
+
+            if (project.type === 'collection') {
+                renderFreelanceCollection(project);
+                return;
+            }
             
             modalTitle.textContent = project.title;
             
@@ -2013,6 +2331,7 @@
             
             // Wait for all images to load and add them in order
             Promise.allSettled(imagePromises).then(results => {
+                if (requestId !== activeGalleryRequest) return;
                 const successfulImages = results
                     .filter(result => result.status === 'fulfilled')
                     .map(result => result.value)
@@ -2039,9 +2358,11 @@
         }
 
         function closeGalleryModal() {
+            activeGalleryRequest++;
             const modal = document.getElementById('galleryModal');
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
+            galleryOpener?.focus({ preventScroll: true });
         }
 
         // Modal event listeners
@@ -2056,8 +2377,21 @@
 
         // Close modal with Escape key
         document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('galleryModal');
+            if (modal.style.display !== 'block') return;
             if (e.key === 'Escape') {
                 closeGalleryModal();
+            } else if (e.key === 'Tab') {
+                const focusable = [...modal.querySelectorAll('button, input, a[href]')].filter(element => element.getClientRects().length > 0);
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last?.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first?.focus();
+                }
             }
         });
 
